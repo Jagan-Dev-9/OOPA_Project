@@ -2,22 +2,144 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
 <head>
 	<meta charset="UTF-8" />
-	<title>Document</title>
+    <title>About - DigiElect</title>
 </head>
 <body>
-	<section class = "center">
-	
+    <section class="hero-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="hero-card text-center">
+                        <h1 class="hero-title">About Our Voting System</h1>
+                        <p class="hero-sub">Secure • Transparent • Democratic</p>
+                        <p class="hero-desc">
+                            Our online voting platform is designed to provide a secure, transparent, and accessible way for citizens to participate in democratic processes. Built with modern security standards and user-friendly design.
+                        </p>
+                    </div>
+                </div>
+            </div>
 
-<h1>About</h1>
-		<div th:if=${session.msg}>
-			<h3 th:text="${session.msg}" style="color:red"></h3>
-   		
+            <!-- Alert Messages -->
+            <div th:if="${session.msg}">
+                <div class="alert alert-error" th:text="${session.msg}"></div>
    		<div th:text="${@sessionUtilityBean.removeVerificationMessageFromSession()}"></div>
    		</div>
    		
+            <!-- Features Grid -->
+            <div class="row mt-5">
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="feature-title">Secure by Design</div>
+                        <div class="feature-desc">
+                            End-to-end protections and role-based access to keep votes private and tamper-proof.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="feature-title">Fast & Reliable</div>
+                        <div class="feature-desc">
+                            Optimized flows for quick voting and near-instant results aggregation.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="feature-title">Transparent</div>
+                        <div class="feature-desc">
+                            Clear process and audit trails help build trust across participants.
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <!-- Additional Features -->
+            <div class="row mt-4">
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="feature-title">Accessibility</div>
+                        <div class="feature-desc">
+                            Responsive design ensures that voters can participate from any device, anywhere, making democracy more accessible.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="feature-title">Security First</div>
+                        <div class="feature-desc">
+                            Advanced encryption and security protocols ensure that every vote is protected and tamper-proof throughout the entire process.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="feature-title">Transparency</div>
+                        <div class="feature-desc">
+                            Complete audit trails and transparent processes allow for full verification of the voting process and results.
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-	<br>	
+            <!-- Technology Stack -->
+            <div class="row mt-5">
+                <div class="col-12">
+                    <div class="card text-center" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; border: none;">
+                        <div class="p-5">
+                            <h3 style="color: white; margin-bottom: 1rem;">
+                                <i class="fas fa-code"></i>
+                                Built with Modern Technology
+                            </h3>
+                            <p style="color: rgba(255,255,255,0.9); font-size: 1.125rem; margin-bottom: 2rem;">
+                                Our platform is built using Spring Boot, Thymeleaf, and modern web technologies to ensure reliability and security.
+                            </p>
+                            <div class="row justify-content-center">
+                                <div class="col-md-3 mb-3">
+                                    <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 0.5rem;">
+                                        <i class="fab fa-java" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                                        <p style="margin: 0; font-weight: 600;">Spring Boot</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 0.5rem;">
+                                        <i class="fas fa-database" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                                        <p style="margin: 0; font-weight: 600;">Database</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 0.5rem;">
+                                        <i class="fas fa-lock" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                                        <p style="margin: 0; font-weight: 600;">Security</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 	</section>
 </body>
 </html>

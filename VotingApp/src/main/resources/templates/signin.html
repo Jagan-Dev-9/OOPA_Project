@@ -1,47 +1,76 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
 <head>
-	<meta charset="UTF-8" />
-	<title>Document</title>
+    <meta charset="UTF-8" />
+    <title>Login - DigiElect</title>
 </head>
 <body>
-	<section class = "center">
-	
-<form th:action = "@{/dologin}" method = "post">
-			 
-<h1>Login</h1>
+    <section class="hero-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 col-md-7">
+                    <div class="hero-card">
+                        <div class="text-center mb-4">
+                            <h1 class="hero-title" style="font-size: 2rem;">Welcome Back</h1>
+                            <p class="hero-desc" style="margin-bottom: 0;">Sign in to your account</p>
+                        </div>
 
-<div th:if=${session.vmsg}>
-			 <th:block th:text="${#session.removeAttribute('vmsg')}"></th:block>
-   		</div>
+                        <!-- Alert Messages -->
+                        <div th:if="${session.vmsg}">
+                            <th:block th:text="${#session.removeAttribute('vmsg')}"></th:block>
+                        </div>
 
-<div th:if="${param.error}" style="color:red">
-          Invalid username and password <br><br>
-        </div>
+                        <div th:if="${param.error}">
+                            <div class="alert alert-error">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                Invalid username and password
+                            </div>
+                        </div>
                             
-         <div th:if="${param.logout}" style="color:green">
-           You have been successfully logged out... <br><br>
-          </div>
-                       		
+                        <div th:if="${param.logout}">
+                            <div class="alert alert-success">
+                                <i class="fas fa-check-circle"></i>
+                                You have been successfully logged out
+                            </div>
+                        </div>
 
-Email Id: <input type = "text" name = "username" placeholder="Enter Your Email Id" required><br><br>
+                        <!-- Login Form -->
+                        <form th:action="@{/dologin}" method="post" class="mt-4">
+                            <div class="form-group">
+                                <label class="form-label" for="username">
+                                    <i class="fas fa-envelope"></i>
+                                    Email Address
+                                </label>
+                                <input type="email" id="username" name="username" class="form-input" placeholder="Enter your email address" required>
+                            </div>
 
-Password: <input type = "password" name= "password" placeholder="Enter Your Password" required><br><br>
+                            <div class="form-group">
+                                <label class="form-label" for="password">
+                                    <i class="fas fa-lock"></i>
+                                    Password
+                                </label>
+                                <input type="password" id="password" name="password" class="form-input" placeholder="Enter your password" required>
+                            </div>
 
-<input type = "submit" value="Login">
+                            <button type="submit" class="btn btn-primary-custom" style="width: 100%; padding: 1rem;">
+                                <i class="fas fa-sign-in-alt"></i>
+                                Sign In
+                            </button>
+                        </form>
 
-</form>
-	<br>	
-	
-<hr>
-<div style="color: firebrick">
-<h2>For Signing-in as a Admin </h2>
-<h3>Use</h3>
-<h3>Email Id: admin</h3>
-<h3>Password: admin</h3>
-</div>
+                        <div class="text-center mt-4">
+                            <p style="color: var(--text-secondary);">
+                                Don't have an account? 
+                                <a th:href="@{/register}" style="color: var(--primary); text-decoration: none; font-weight: 600;">
+                                    Register here
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-	<br>
-	</section>
+        </div>
+    </section>
 </body>
 </html>

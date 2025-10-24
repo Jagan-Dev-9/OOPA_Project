@@ -1,43 +1,56 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(content)">
-  <head>
-    <!-- Required meta tags -->
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-   
-	
-	<link rel="stylesheet" th:href="@{/css/style.css}" />
-	<link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
-
-    <title th:text="${title}">Title</title>
-  </head>
-  <body> 
-   <!-- Navbar -->
-
-  <ul>
-  <li><a class="active" th:href="@{/user/}">Home</a></li>
-   <li><a>Welcome <span th:text="${user.name}"></span></a></li>
-  <li><a th:href="@{/logout}">Logout</a></li>
-</ul>
-
-    <!-- Navbar End -->
     
-  
-   
-  
-    <div th:replace="${content}">
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     
-    </div>
-	
-	  </div>
-	
-   
+    <!-- Stylesheets -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
     
-  
-  
-  
- 
-    
-  </body>
+    <title th:text="${title}">User Dashboard - Online Voting System</title>
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="site-header">
+        <div class="container">
+            <a class="brand" th:href="@{/user/}">
+                <i class="fas fa-vote-yea"></i>
+                Voting Dashboard
+            </a>
+            <ul class="nav-links">
+                <li><a class="nav-link" th:classappend="${#httpServletRequest.requestURI == '/user/'} ? 'active'" th:href="@{/user/}">
+                    <i class="fas fa-home"></i>
+                    Dashboard
+                </a></li>
+                <li><a class="nav-link" style="color: var(--text-secondary); cursor: default;">
+                    <i class="fas fa-user"></i>
+                    Welcome, <span th:text="${user.name}"></span>
+                </a></li>
+                <li><a class="nav-link" th:href="@{/logout}" style="color: var(--error);">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div th:replace="${content}"></div>
+    </main>
+
+    <!-- Footer -->
+    <footer style="background: var(--surface); border-top: 1px solid var(--border); padding: 2rem 0; margin-top: 4rem;">
+        <div class="container text-center">
+            <p style="color: var(--text-secondary); margin: 0;">
+                © 2024 Online Voting System. Secure & Transparent Voting Platform.
+            </p>
+        </div>
+    </footer>
+</body>
 </html>

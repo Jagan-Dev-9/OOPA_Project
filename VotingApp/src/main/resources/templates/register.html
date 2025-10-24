@@ -1,47 +1,83 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
 <head>
-	<meta charset="UTF-8" />
-	<title>Document</title>
+    <meta charset="UTF-8" />
+    <title>Register - DigiElect</title>
 </head>
 <body>
-	<section class="center">
-			
-		<h1>Register</h1>
-		
-		<div th:if=${session.fail}>
-			<h3 th:text="${session.fail}" style="color:red"></h3>
-			<th:block th:text="${#session.removeAttribute('fail')}"></th:block>
-   		</div>
-   		
-   		<div th:if=${session.msg}>
-			<h3 th:text="${session.msg}" style="color:green"></h3>
-   		
-				<th:block th:text="${#session.removeAttribute('msg')}"></th:block>
-	
-   		</div>
-   		
-   		
-    	
-		<form th:action="@{/createuser}" method="post">
-	
-			
-			User Name: <input type = "text" name = "name" placeholder="Enter Your User Name" required><br><br>
-			
-			Password: <input type = "password" name= "password" placeholder="Enter Your Password" required><br><br>
-			
-			Email Id: <input type = "text" name= "email" placeholder="Enter Your Email Id" required><br><br>
-			
-			Phone No: <input type = "number" name= "phone" placeholder="Enter Your Phone No" required><br><br>
-			
-			
-			<input type = "submit" value="Register">
-			
-		
-		</form>
-		<br>
-	
-	
-	</section>
+    <section class="hero-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 col-md-7">
+                    <div class="hero-card">
+                        <div class="text-center mb-4">
+                            <h1 class="hero-title" style="font-size: 2rem;">Create Account</h1>
+                            <p class="hero-desc" style="margin-bottom: 0;">Join our secure voting platform</p>
+                        </div>
+
+                        <!-- Alert Messages -->
+                        <div th:if="${session.fail}">
+                            <div class="alert alert-error" th:text="${session.fail}"></div>
+                            <th:block th:text="${#session.removeAttribute('fail')}"></th:block>
+                        </div>
+                        
+                        <div th:if="${session.msg}">
+                            <div class="alert alert-success" th:text="${session.msg}"></div>
+                            <th:block th:text="${#session.removeAttribute('msg')}"></th:block>
+                        </div>
+
+                        <!-- Registration Form -->
+                        <form th:action="@{/createuser}" method="post" class="mt-4">
+                            <div class="form-group">
+                                <label class="form-label" for="name">
+                                    <i class="fas fa-user"></i>
+                                    Full Name
+                                </label>
+                                <input type="text" id="name" name="name" class="form-input" placeholder="Enter your full name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="email">
+                                    <i class="fas fa-envelope"></i>
+                                    Email Address
+                                </label>
+                                <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email address" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="phone">
+                                    <i class="fas fa-phone"></i>
+                                    Phone Number
+                                </label>
+                                <input type="tel" id="phone" name="phone" class="form-input" placeholder="Enter your phone number" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="password">
+                                    <i class="fas fa-lock"></i>
+                                    Password
+                                </label>
+                                <input type="password" id="password" name="password" class="form-input" placeholder="Create a strong password" required>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary-custom" style="width: 100%; padding: 1rem;">
+                                <i class="fas fa-user-plus"></i>
+                                Create Account
+                            </button>
+                        </form>
+
+                        <div class="text-center mt-4">
+                            <p style="color: var(--text-secondary);">
+                                Already have an account? 
+                                <a th:href="@{/signin}" style="color: var(--primary); text-decoration: none; font-weight: 600;">
+                                    Sign in here
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>

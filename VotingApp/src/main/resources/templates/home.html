@@ -1,25 +1,38 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
 <head>
-	<meta charset="UTF-8" />
-	<title>Document</title>
+    <meta charset="UTF-8" />
+    <title>Home - DigiElect</title>
 </head>
 <body>
-	<section class="center">
-		<div class="text-center">
-		
-			
-			<h1 class="font-weight-bold">Voting Application</h1>
-			
-			<div th:if=${session.msg}>
-			<h3 th:text="${session.msg}" style="color:red"></h3>
-   			<th:block th:text="${#session.removeAttribute('msg')}"></th:block>
-   
-   		</div>	
-	
-		</div>
-		
-	
-	</section>
+    <section class="hero-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="hero-card text-center">
+                        <h1 class="hero-title">DigiElect</h1>
+                        <p class="hero-sub">Secure • Fast • Transparent</p>
+                        <p class="hero-desc">Your voice matters — cast it confidently from anywhere. Built for fairness and privacy.</p>
+
+                        <div class="d-flex justify-content-center gap-3 mb-4">
+                            <a class="btn btn-primary-custom btn-lg" th:href="@{/register}">
+                                <i class="fas fa-user-plus"></i>
+                                Get Started
+                            </a>
+                            <a class="btn btn-outline-custom btn-lg" th:href="@{/signin}">
+                                <i class="fas fa-sign-in-alt"></i>
+                                Sign In
+                            </a>
+                        </div>
+
+                        <div class="mt-3" th:if="${session.msg}">
+                            <div class="alert alert-warning" th:text="${session.msg}"></div>
+                            <th:block th:text="${#session.removeAttribute('msg')}"></th:block>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>

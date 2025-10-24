@@ -1,44 +1,51 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(content)">
-  <head>
-    <!-- Required meta tags -->
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" th:href="@{/image/favicon.png}" />
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    
+    <title th:text="${title}">DigiElect - Online Voting System</title>
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="site-header">
+        <div class="container">
+            <a class="brand" th:href="@{/}">
+                <i class="fas fa-vote-yea"></i>
+                DigiElect
+            </a>
+            <ul class="nav-links">
+                <li><a class="nav-link" th:classappend="${#httpServletRequest.requestURI == '/'} ? 'active'" th:href="@{/}">Home</a></li>
+                <li><a class="nav-link" th:classappend="${#httpServletRequest.requestURI == '/register'} ? 'active'" th:href="@{/register}">Register</a></li>
+                <li><a class="nav-link" th:classappend="${#httpServletRequest.requestURI == '/signin'} ? 'active'" th:href="@{/signin}">Login</a></li>
+                <li><a class="nav-link" th:classappend="${#httpServletRequest.requestURI == '/about'} ? 'active'" th:href="@{/about}">About</a></li>
+            </ul>
+        </div>
+    </header>
 
-   
-	<link rel="stylesheet" th:href="@{/css/style.css}" />
-	<link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
-    <title th:text="${title}">Title</title>
-  </head>
-  <body> 
-   <!-- Navbar -->
+    <!-- Main Content -->
+    <main>
+        <div th:replace="${content}"></div>
+    </main>
 
-  <ul>
-  <li><a class="active" th:href="@{/}">Home</a></li>
-  <li><a th:href="@{/register}">Register</a></li>
-  <li><a th:href="@{/signin}">Login</a></li>
-  <li><a th:href="@{/about}">About</a></li>
-</ul>
-
-    <!-- Navbar End -->
-    
-  
-   
-  
-    <div th:replace="${content}">
-    
-    
-    
-    </div>
-	
-	 
-	
-   
-    
-  
-  
-  
- 
-    
-  </body>
+    <!-- Footer -->
+    <footer style="background: var(--surface); border-top: 1px solid var(--border); padding: 2rem 0; margin-top: 4rem;">
+        <div class="container text-center">
+            <p style="color: var(--text-secondary); margin: 0;">
+                © 2024 DigiElect. Built with Spring Boot & Thymeleaf.
+            </p>
+        </div>
+    </footer>
+</body>
 </html>

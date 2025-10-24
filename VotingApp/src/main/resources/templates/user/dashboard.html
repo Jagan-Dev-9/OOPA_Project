@@ -1,128 +1,133 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{user/base::layout(~{::section})}">
 <head>
-	<meta charset="UTF-8" />
-	
-	
-
-
-<title>Document</title>
+    <meta charset="UTF-8" />
+    <title>User Dashboard - Online Voting System</title>
 </head>
 <body>
-	<section class = "center">
-			
-   		
-<div class="container">
-  
-  <div class="center">
-  
-<!--  -->
-<div class="layout">
+    <section class="dashboard-container">
+        <div class="dashboard-header text-center">
+            <h1 class="dashboard-title">Your Voting Dashboard</h1>
+            <p class="dashboard-subtitle">Cast your vote and view your profile information</p>
+        </div>
 
-		<div class = "col col-main">
-	
-   		
-   		<!-- 1st Col Start -->
-		
-		<table>
-						<h2>User Details:</h2>
-							<img th:src="@{/image/user.png}" height="125px" alt="User Icon">
-							
-					</table>
-						
-						<table border = '1' align='center'>
-							
-							
-							
-							<tr>
-								<th>Name: </th>
-								<th> <h4 th:text="${user.name}"></h4></th>
-							</tr>
-							
-							
-						
-								<tr>
-									<th>Email Id: </th>
-									<th><h4 th:text="${user.email}"></h4> </th>
-								</tr>
-					
-								<tr>
-									<th>Phone No.: </th>
-									<th><h4 th:text="${user.phone}"></h4> </th>
-								</tr>
-								
-								<tr>
-									<th>Status.: </th>
-									<th>
-										
-										<div th:if=${user.status}>
-											 <h4 th:text="${user.status}"></h4> 
-								   		</div>
-								   		
-								   		<div th:unless=${user.status}>
-								   			 <h4>Not Voted</h4>
-								   		</div>
-									
-									</th>
-								</tr>
+        <div class="dashboard-grid">
+            <!-- User Profile Card -->
+            <div class="profile-card">
+                <div class="profile-info">
+                    <img th:src="@{/image/user.png}" class="profile-avatar" alt="User Avatar">
+                    <h3 class="profile-name" th:text="${user.name}">User Name</h3>
+                    
+                    <div class="profile-detail">
+                        <span class="profile-label">Email:</span>
+                        <span class="profile-value" th:text="${user.email}">user@example.com</span>
+                    </div>
+                    
+                    <div class="profile-detail">
+                        <span class="profile-label">Phone:</span>
+                        <span class="profile-value" th:text="${user.phone}">+1234567890</span>
+                    </div>
+                    
+                    <div class="profile-detail">
+                        <span class="profile-label">Voting Status:</span>
+                        <div th:if="${user.status}">
+                            <span class="status-badge status-voted" th:text="${user.status}">Voted</span>
+                        </div>
+                        <div th:unless="${user.status}">
+                            <span class="status-badge status-not-voted">Not Voted</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-								
-				
-						</table>
-		
-		</div>
-		
-		<!-- 1st Col End  -->
-	
-		<div class = "col col-complementary">
+            <!-- Voting Card -->
+            <div class="voting-card">
+                <div class="text-center mb-4">
+                    <h3 style="color: var(--text-primary); margin-bottom: 0.5rem;">
+                        <i class="fas fa-vote-yea"></i>
+                        Cast Your Vote
+                    </h3>
+                    <p style="color: var(--text-secondary); margin: 0;">Select your preferred candidate</p>
+                </div>
 
-<!-- 2nd Col start -->
+                <!-- Success/Error Messages -->
+                <div th:if="${session.vmsg}">
+                    <div class="alert alert-success" th:text="${session.vmsg}"></div>
+                    <th:block th:text="${#session.removeAttribute('vmsg')}"></th:block>
+                </div>
 
-<form th:action = "@{/addcandidate}" method ="post">
+                <div th:unless="${session.vmsg}">
+                    <div th:if="${user.status}">
+                        <div class="alert alert-success text-center">
+                            <i class="fas fa-check-circle"></i>
+                            <strong>You have already voted for:</strong> <span th:text="${user.status}"></span>
+                        </div>
+                    </div>
+                </div>
 
+                <!-- Voting Form -->
+                <div th:unless="${user.status}">
+                    <form th:action="@{/addcandidate}" method="post">
+                        <input th:value="${user.email}" name="email" type="hidden">
+                        
+                        <div class="voting-option">
+                            <input type="radio" id="candidate1" name="candidate" value="candidate1" required>
+                            <label for="candidate1">
+                                <i class="fas fa-user-tie"></i>
+                                Candidate 1
+                            </label>
+                        </div>
+                        
+                        <div class="voting-option">
+                            <input type="radio" id="candidate2" name="candidate" value="candidate2" required>
+                            <label for="candidate2">
+                                <i class="fas fa-user-tie"></i>
+                                Candidate 2
+                            </label>
+                        </div>
+                        
+                        <div class="voting-option">
+                            <input type="radio" id="candidate3" name="candidate" value="candidate3" required>
+                            <label for="candidate3">
+                                <i class="fas fa-user-tie"></i>
+                                Candidate 3
+                            </label>
+                        </div>
+                        
+                        <div class="voting-option">
+                            <input type="radio" id="candidate4" name="candidate" value="candidate4" required>
+                            <label for="candidate4">
+                                <i class="fas fa-user-tie"></i>
+                                Candidate 4
+                            </label>
+                        </div>
 
+                        <button type="submit" class="btn btn-primary-custom" style="width: 100%; padding: 1rem; margin-top: 1rem;">
+                            <i class="fas fa-vote-yea"></i>
+                            Submit Vote
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
 
-		<div th:if=${session.vmsg}>
-			 <h3 th:text="${session.vmsg}" style="color:green"></h3>
-   		</div>
-   		
-   		<div th:unless=${session.vmsg}>
-   			<div th:if=${user.status}>
-			 <h2 style="color:green"> You are already <span th:text="${user.status}">Title</span> </h2> 
-   			</div>
-   		</div>
-   		
-   		
-   		
-   		 
-		<div th:unless=${user.status}>
-
-			<input th:value="${user.email}" name = "email" type="hidden" >
-		 	<br>
-		 	<input type="radio" name="candidate"  value ="candidate1" required>Candidate 1  <br><br>
-		  	<input type="radio" name="candidate"  value = "candidate2" required>Candidate 2 <br><br>
-		  	<input type="radio" name="candidate"  value = "candidate3" required>Candidate 3 <br><br>
-		  	<input type="radio" name="candidate"  value = "candidate4" required>Candidate 4 <br><br>
-		    	    
-		<input type = "submit" value="Vote">
-		    <br>
-   	   </div>
-	
- 
-
-
-
-</form>
-
-<!-- 2nd Col End -->
-</div>
-
-</div>
-<!--  -->
-</div>
-</div>
-
-	<br>	
-	</section>
+        <!-- Additional Info Card -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card text-center" style="background: linear-gradient(135deg, var(--success) 0%, #059669 100%); color: white; border: none;">
+                    <div class="p-4">
+                        <h4 style="color: white; margin-bottom: 1rem;">
+                            <i class="fas fa-info-circle"></i>
+                            Important Voting Information
+                        </h4>
+                        <p style="color: rgba(255,255,255,0.9); margin-bottom: 0;">
+                            Your vote is secure and anonymous. Once submitted, your choice cannot be changed. 
+                            Please review your selection carefully before submitting.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
