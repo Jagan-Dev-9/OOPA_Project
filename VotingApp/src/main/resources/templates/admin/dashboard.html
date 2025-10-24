@@ -17,122 +17,90 @@
             <th:block th:text="${#session.removeAttribute('msg')}"></th:block>
         </div>
 
-        <!-- Results Overview -->
-        <div class="results-card">
-            <div class="text-center mb-4">
-                <h3 style="color: var(--text-primary); margin-bottom: 0.5rem;">
-                    <i class="fas fa-chart-bar"></i>
-                    Voting Results
-                </h3>
-                <p style="color: var(--text-secondary); margin: 0;">Real-time vote counts for all candidates</p>
-   		</div>
-   		
-            <div class="result-item">
-                <div class="result-candidate">
-                    <i class="fas fa-user-tie" style="color: var(--primary); margin-right: 0.5rem;"></i>
-                    Candidate 1
-                </div>
-                <div class="result-votes" th:text="${c1}">0</div>
+        <!-- Statistics Cards - 2x2 grid -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 600px; margin: 0 auto 2rem;">
+            <div class="card text-center" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; border: none; padding: 1.25rem;">
+                <i class="fas fa-users" style="font-size: 1.75rem; margin-bottom: 0.5rem;"></i>
+                <h5 style="color: white; margin-bottom: 0.5rem; font-size: 0.9rem;">Total Votes</h5>
+                <p style="color: rgba(255,255,255,0.95); font-size: 1.75rem; font-weight: 700; margin: 0;">
+                    <span th:text="${(c1 != null ? c1 : 0) + (c2 != null ? c2 : 0) + (c3 != null ? c3 : 0) + (c4 != null ? c4 : 0)}">0</span>
+                </p>
             </div>
-
-            <div class="result-item">
-                <div class="result-candidate">
-                    <i class="fas fa-user-tie" style="color: var(--primary); margin-right: 0.5rem;"></i>
-                    Candidate 2
-                </div>
-                <div class="result-votes" th:text="${c2}">0</div>
+            
+            <div class="card text-center" style="background: linear-gradient(135deg, var(--success) 0%, #059669 100%); color: white; border: none; padding: 1.25rem;">
+                <i class="fas fa-check-circle" style="font-size: 1.75rem; margin-bottom: 0.5rem;"></i>
+                <h5 style="color: white; margin-bottom: 0.5rem; font-size: 0.9rem;">Votes Cast</h5>
+                <p style="color: rgba(255,255,255,0.95); font-size: 1.75rem; font-weight: 700; margin: 0;">
+                    <span th:text="${(c1 != null ? c1 : 0) + (c2 != null ? c2 : 0) + (c3 != null ? c3 : 0) + (c4 != null ? c4 : 0)}">0</span>
+                </p>
             </div>
-
-            <div class="result-item">
-                <div class="result-candidate">
-                    <i class="fas fa-user-tie" style="color: var(--primary); margin-right: 0.5rem;"></i>
-                    Candidate 3
-                </div>
-                <div class="result-votes" th:text="${c3}">0</div>
+            
+            <div class="card text-center" style="background: linear-gradient(135deg, var(--warning) 0%, #d97706 100%); color: white; border: none; padding: 1.25rem;">
+                <i class="fas fa-clock" style="font-size: 1.75rem; margin-bottom: 0.5rem;"></i>
+                <h5 style="color: white; margin-bottom: 0.5rem; font-size: 0.9rem;">Status</h5>
+                <p style="color: rgba(255,255,255,0.95); font-size: 1.75rem; font-weight: 700; margin: 0;">Live</p>
             </div>
-
-            <div class="result-item">
-                <div class="result-candidate">
-                    <i class="fas fa-user-tie" style="color: var(--primary); margin-right: 0.5rem;"></i>
-                    Candidate 4
-                </div>
-                <div class="result-votes" th:text="${c4}">0</div>
+            
+            <div class="card text-center" style="background: linear-gradient(135deg, var(--secondary) 0%, #0891b2 100%); color: white; border: none; padding: 1.25rem;">
+                <i class="fas fa-shield-alt" style="font-size: 1.75rem; margin-bottom: 0.5rem;"></i>
+                <h5 style="color: white; margin-bottom: 0.5rem; font-size: 0.9rem;">Security</h5>
+                <p style="color: rgba(255,255,255,0.95); font-size: 1.75rem; font-weight: 700; margin: 0;">Secure</p>
             </div>
         </div>
 
-        <!-- Statistics Cards -->
-        <div class="row mt-4">
-            <div class="col-md-3 mb-3">
-                <div class="card text-center" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; border: none;">
-                    <div class="p-4">
-                        <i class="fas fa-users" style="font-size: 2rem; margin-bottom: 1rem;"></i>
-                        <h4 style="color: white; margin-bottom: 0.5rem;">Total Voters</h4>
-                        <p style="color: rgba(255,255,255,0.9); font-size: 1.5rem; font-weight: 700; margin: 0;">
-                            <span th:text="${(c1 != null ? c1 : 0) + (c2 != null ? c2 : 0) + (c3 != null ? c3 : 0) + (c4 != null ? c4 : 0)}">0</span>
-                        </p>
+        <!-- Results Overview - Compact grid -->
+        <div class="row mt-3">
+            <div class="col-lg-8">
+                <div class="results-card" style="padding: 1.5rem;">
+                    <div class="text-center mb-3">
+                        <h3 style="color: var(--text-primary); margin-bottom: 0.5rem; font-size: 1.25rem;">
+                            <i class="fas fa-chart-bar"></i>
+                            Voting Results
+                        </h3>
+                        <p style="color: var(--text-secondary); margin: 0; font-size: 0.9rem;">Real-time vote counts</p>
                     </div>
-                </div>
-            </div>
-            
-            <div class="col-md-3 mb-3">
-                <div class="card text-center" style="background: linear-gradient(135deg, var(--success) 0%, #059669 100%); color: white; border: none;">
-                    <div class="p-4">
-                        <i class="fas fa-check-circle" style="font-size: 2rem; margin-bottom: 1rem;"></i>
-                        <h4 style="color: white; margin-bottom: 0.5rem;">Votes Cast</h4>
-                        <p style="color: rgba(255,255,255,0.9); font-size: 1.5rem; font-weight: 700; margin: 0;">
-                            <span th:text="${(c1 != null ? c1 : 0) + (c2 != null ? c2 : 0) + (c3 != null ? c3 : 0) + (c4 != null ? c4 : 0)}">0</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-md-3 mb-3">
-                <div class="card text-center" style="background: linear-gradient(135deg, var(--warning) 0%, #d97706 100%); color: white; border: none;">
-                    <div class="p-4">
-                        <i class="fas fa-clock" style="font-size: 2rem; margin-bottom: 1rem;"></i>
-                        <h4 style="color: white; margin-bottom: 0.5rem;">Active Session</h4>
-                        <p style="color: rgba(255,255,255,0.9); font-size: 1.5rem; font-weight: 700; margin: 0;">Live</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-md-3 mb-3">
-                <div class="card text-center" style="background: linear-gradient(135deg, var(--secondary) 0%, #475569 100%); color: white; border: none;">
-                    <div class="p-4">
-                        <i class="fas fa-shield-alt" style="font-size: 2rem; margin-bottom: 1rem;"></i>
-                        <h4 style="color: white; margin-bottom: 0.5rem;">Security</h4>
-                        <p style="color: rgba(255,255,255,0.9); font-size: 1.5rem; font-weight: 700; margin: 0;">Secure</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Admin Actions -->
-        <div class="row mt-4">
-            <div class="col-12">
-                <div class="card text-center" style="background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%); color: white; border: none;">
-                    <div class="p-4">
-                        <h4 style="color: white; margin-bottom: 1rem;">
-                            <i class="fas fa-cogs"></i>
-                            Administrative Controls
-                        </h4>
-                        <p style="color: rgba(255,255,255,0.9); margin-bottom: 1.5rem;">
-                            Monitor the voting process and ensure system integrity. All votes are encrypted and securely stored.
-                        </p>
-                        <div class="d-flex justify-content-center gap-3">
-                            <button class="btn" style="background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3); padding: 0.75rem 1.5rem;">
-                                <i class="fas fa-download"></i>
-                                Export Results
-                            </button>
-                            <button class="btn" style="background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3); padding: 0.75rem 1.5rem;">
-                                <i class="fas fa-refresh"></i>
-                                Refresh Data
-                            </button>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-2">
+                            <div class="result-item" style="padding: 0.75rem 0;">
+                                <div class="result-candidate">
+                                    <i class="fas fa-user-tie" style="color: var(--primary); margin-right: 0.5rem;"></i>
+                                    Candidate 1
+                                </div>
+                                <div class="result-votes" th:text="${c1}">0</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <div class="result-item" style="padding: 0.75rem 0;">
+                                <div class="result-candidate">
+                                    <i class="fas fa-user-tie" style="color: var(--primary); margin-right: 0.5rem;"></i>
+                                    Candidate 2
+                                </div>
+                                <div class="result-votes" th:text="${c2}">0</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <div class="result-item" style="padding: 0.75rem 0;">
+                                <div class="result-candidate">
+                                    <i class="fas fa-user-tie" style="color: var(--primary); margin-right: 0.5rem;"></i>
+                                    Candidate 3
+                                </div>
+                                <div class="result-votes" th:text="${c3}">0</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <div class="result-item" style="padding: 0.75rem 0;">
+                                <div class="result-candidate">
+                                    <i class="fas fa-user-tie" style="color: var(--primary); margin-right: 0.5rem;"></i>
+                                    Candidate 4
+                                </div>
+                                <div class="result-votes" th:text="${c4}">0</div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-	</section>
+    </section>
 </body>
 </html>

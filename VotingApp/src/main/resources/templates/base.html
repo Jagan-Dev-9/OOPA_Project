@@ -15,24 +15,11 @@
     <link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
     <link rel="stylesheet" th:href="@{/css/style.css}" />
     
-    <title th:text="${title}">DigiElect - Online Voting System</title>
+    <title>DigiElect - Your voice matters</title>
 </head>
 <body>
-    <!-- Navigation -->
-    <header class="site-header">
-        <div class="container">
-            <a class="brand" th:href="@{/}">
-                <i class="fas fa-vote-yea"></i>
-                DigiElect
-            </a>
-            <ul class="nav-links">
-                <li><a class="nav-link" th:classappend="${#httpServletRequest.requestURI == '/'} ? 'active'" th:href="@{/}">Home</a></li>
-                <li><a class="nav-link" th:classappend="${#httpServletRequest.requestURI == '/register'} ? 'active'" th:href="@{/register}">Register</a></li>
-                <li><a class="nav-link" th:classappend="${#httpServletRequest.requestURI == '/signin'} ? 'active'" th:href="@{/signin}">Login</a></li>
-                <li><a class="nav-link" th:classappend="${#httpServletRequest.requestURI == '/about'} ? 'active'" th:href="@{/about}">About</a></li>
-            </ul>
-        </div>
-    </header>
+    <!-- Navigation (fragment) -->
+    <div th:replace="fragments/header :: siteHeader"></div>
 
     <!-- Main Content -->
     <main>
@@ -45,7 +32,23 @@
             <p style="color: var(--text-secondary); margin: 0;">
                 © 2024 DigiElect. Built with Spring Boot & Thymeleaf.
             </p>
+            <p style="color: var(--text-secondary); margin: 0.5rem 0 0; font-size: 0.9rem;">
+                Made by <a href="https://github.com/Jagan-Dev-9/OOPA_Project" target="_blank" style="color: var(--primary); font-weight: 600; text-decoration: none;">PhoenixCoders</a>
+            </p>
         </div>
     </footer>
+
+    <script>
+        // Simple nav toggle for small screens
+        (function(){
+            var btn = document.getElementById('navToggle');
+            var nav = document.getElementById('navContainer');
+            if(!btn || !nav) return;
+            btn.addEventListener('click', function(){
+                nav.classList.toggle('open');
+                btn.classList.toggle('open');
+            });
+        })();
+    </script>
 </body>
 </html>

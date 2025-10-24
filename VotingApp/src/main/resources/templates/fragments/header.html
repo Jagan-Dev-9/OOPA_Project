@@ -1,0 +1,27 @@
+<!doctype html>
+<!-- Header fragment - reusable site header -->
+<div th:fragment="siteHeader">
+    <header class="site-header">
+        <div class="container">
+            <a class="brand d-flex align-items-center" th:href="@{/}">
+                <img th:src="@{/image/image.png}" alt="DigiElect" width="36" height="36" style="margin-right:10px;"/>
+                <span>DigiElect</span>
+            </a>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <nav class="nav-container" id="navContainer">
+                <ul class="nav-links mb-0">
+                    <li><a class="nav-link" th:classappend="${#httpServletRequest.requestURI == '/'} ? 'active'" th:href="@{/}">Home</a></li>
+                    <li><a class="nav-link" th:classappend="${#httpServletRequest.requestURI == '/register'} ? 'active'" th:href="@{/register}">Register</a></li>
+                    <li><a class="nav-link" th:classappend="${#httpServletRequest.requestURI == '/signin'} ? 'active'" th:href="@{/signin}">Login</a></li>
+                    <li><a class="nav-link" th:classappend="${#httpServletRequest.requestURI == '/about'} ? 'active'" th:href="@{/about}">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+</div>
